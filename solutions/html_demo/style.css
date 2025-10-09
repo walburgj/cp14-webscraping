@@ -1,0 +1,23 @@
+/* Element Selector */
+p {
+    color: red;
+    background-color: beige;
+}
+
+/* Class Selector */
+.info-text {
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+/* Class Selector */
+.other-text {
+    color: green
+}
+
+/* ID Selector */
+#main-header {
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
