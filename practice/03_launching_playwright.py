@@ -26,7 +26,7 @@ from playwright.sync_api import sync_playwright
 If you want to get fancy in the future, you can loop up the async api, but 
 that requires knowledge beyond what we cover in this class.
 '''
-
+from playwright.sync_api import sync_playwright
 
 
 
@@ -45,11 +45,17 @@ with sync_playwright() as p:
     browser = p.chromium.launch(headless=False, slow_mo=3000) # getting the chromium browser
     context = browser.new_context() # no shared cache/cookies in the chromium broswer
     page = context.new_page() # load a new page using that new context
-
-
 '''
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=False, slow_mo=3000) # set up the browser, headless is if it displays or not, slowmo is how long it appears for in ms(3000 = 3 sec)
+    context = browser.new_context() # the cookies and stored settings
+    page = context.new_page() # load a new page to work with
 
+    page.goto('https://books.toscrape.com/catalogue/aladdin-and-his-wonderful-lamp_973/index.html')
 
+    print(page.title())
+    input("Press enter to continue...")
+    print(page.content())
 
 # 3. GO TO A SPECIFIC PAGE
 '''
