@@ -11,6 +11,7 @@ OVERVIEW
 Scraping successfully requires that you tell playwright where the data you want
 exists. We're gonna do that with these methods below. There are other methods
 and alternative ways to do things, but to keep it simple we'll focus on these.
+
     - .locator("element_name[attribute='attribute_value']")
         - will grab every element that matches
     
@@ -50,7 +51,7 @@ with sync_playwright() as p:
 # the result to see what the first "p" element is.
 
     all_p_elements = page.locator("p")
-    print(all_p_elements.nth(0).text_content())
+    print(all_p_elements.nth(0).text_content(), "\n")
 
 # 3. VIEW CONTENT FROM ALL P ELEMENTS
 # Do the same as #2, but this time, after getting all of the "p" elements using
@@ -69,9 +70,9 @@ with sync_playwright() as p:
 # 4. FIND A SPECIFIC ELEMENT
 # Let's say we want to grab the div that has the attribute of
 # "product_description". We can use locator, but combine it with some extra
-# instructions, like: .locator("div[id='product_description]")
+# instructions, like: .locator("div[id='product_description']")
     specific_div = page.locator("div[id='product_description']").text_content()
-    print(specific_div)
+    print(specific_div, "\n")
 
 
 # 5. FIND ELEMENTS NESTED IN OTHER ELEMENTS
@@ -83,9 +84,37 @@ with sync_playwright() as p:
 # "table table-striped" then the first tr inside the table, then the first td
 
     specific_cell = page.locator("table[class='table table-striped'] tr").nth(0).locator("td").nth(0)
-    print(specific_cell.inner_text())
+    print(specific_cell.inner_text(), "\n")
 
-# 6. GRAB THE VALUE OF AN ATTRIBUTE
+# 6. FIND ELEMENTS NEXT TO OTHER ELEMENTS
+# Let's say you want to grab the product description, but it is inside a <p>
+# element with no unique attributes. But you can see it is right next to a <div>
+# element that has a unique ID. You can find the <div> then use + to grab the
+# element element next to it (called a sibling)
+
+    description_p = page.locator("div[id='product_description'] + p")
+    print(description_p.text_content(), "\n")
+
+    '''
+GRABBING CHILD AND SIBLING ELEMENTS
+-----------------------------------
+Child elements are elements nested in another element.
+Sibling elements are elements next to another element at the same level.
+
+page.locator("div p").all_text_contents()
+    - get all child p elements of the div, even those nested several levels deep
+
+page.locator("div > p").all_text_contents()
+    - get all child p elements but only those nested one level deep
+
+page.locator("h3 + p").all_text_contents()
+    - get the sibling p element directly after the h3 element
+
+page.locator("h3 ~ p").all_text_contents()
+    - get all sibling p elements that are after the h3 element
+    '''
+
+# 7. GRAB THE VALUE OF AN ATTRIBUTE
 # Sometimes we want to grab data that is in the HTML attributes, not the content
 # visible on the page. You can do this using .get_attribute() once you've found
 # a single element. Let's grab the <ul> element with teh class of "breadcrumb"
@@ -96,7 +125,7 @@ with sync_playwright() as p:
     print(href_attribute)
 
 
-# 7. NAVIGATE TO A NEW PAGE
+# 8. NAVIGATE TO A NEW PAGE
 # You could use the href attribute that you pulled from the element in #6 to
 # navigate to a new page. But, since we are using playwright, we can actually
 # just directly control the browser. Tell it to click on the element you grabbed

@@ -54,7 +54,7 @@ page_url = 'https://books.toscrape.com/catalogue/aladdin-and-his-wonderful-lamp_
 # 4. FIND A SPECIFIC ELEMENT
 # Let's say we want to grab the div that has the attribute of
 # "product_description". We can use locator, but combine it with some extra
-# instructions, like: .locator("div[id='product_description]")
+# instructions, like: .locator("div[id='product_description']")
 
 
 # 5. FIND ELEMENTS NESTED IN OTHER ELEMENTS

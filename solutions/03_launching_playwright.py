@@ -70,9 +70,3 @@ Then, print out the .title() and .content() in python. See what you get.
 You can put an input("press enter to end") after everything so that the website
 doesn't close if you want.
 '''
-
-
-
-
-    
-
