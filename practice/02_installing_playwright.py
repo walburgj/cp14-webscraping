@@ -14,9 +14,9 @@ then, run this:
 
 from playwright.sync_api import sync_playwright
 print("If this prints, that means you installed the playwright package correctly")
+
 with sync_playwright() as p:
     p.chromium.launch() 
-
 print("If this prints, that means you ran 'playwright install' in the terminal correctly")
 
 

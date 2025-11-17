@@ -1,7 +1,3 @@
-from solutions.helper_functions import clear_screen
-clear_screen()
-
-
 '''
 OVERVIEW
 --------

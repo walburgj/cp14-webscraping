@@ -73,9 +73,7 @@ with sync_playwright() as p:
 # Let's say we want to grab the div that has the attribute of
 # "product_description". We can use locator, but combine it with some extra
 # instructions, like: .locator("div[id='product_description]")
-    clear_screen()
-    specific_div = page.locator("div[id='product_description']").nth(0)
-    print(specific_div.text_content().strip())
+
 
 # 5. FIND ELEMENTS NESTED IN OTHER ELEMENTS
 # Let's say you want to find the the UPC id for the book. You might notice that
